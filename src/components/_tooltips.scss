@@ -7,7 +7,11 @@
     // Position
     position: absolute;
     z-index: 1;
-    bottom: 50%;
+    // if --start / --end exist, then it's a line chart, and we calculate
+    // the larger of the two to place the tooltip above the line segment;
+    // if --start and --end don't exist, fallback to 0.5 * 100% = 50%,
+    // which is the default tooltip position for e.g. bar charts
+    bottom: calc(max(var(--start, 0.5), var(--end, 0.5)) * 100%);
     left: 50%;
     transform: translateX(-50%); // translateX for both bar & column chart
     width: max-content;
